@@ -95,3 +95,87 @@ BEGIN
     ALTER ROLE [db_owner] ADD MEMBER [usr_admin_bd];
 END;
 GO
+
+/* ------------------------------------------------------------
+   3. USUARIO DE SOLO LECTURA
+      Login/usuario        : usr_lectura_banreservas
+      Rol de base de datos : db_datareader
+   ------------------------------------------------------------ */
+USE [master];
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.server_principals
+    WHERE name = N'usr_lectura_banreservas'
+)
+BEGIN
+    CREATE LOGIN [usr_lectura_banreservas]
+        WITH PASSWORD = N'S0l0Acc3s0#2026',
+             CHECK_POLICY = ON,
+             CHECK_EXPIRATION = OFF;
+END;
+GO
+
+USE [BanreservasDB];
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.database_principals
+    WHERE name = N'usr_lectura_banreservas'
+)
+BEGIN
+    CREATE USER [usr_lectura_banreservas]
+        FOR LOGIN [usr_lectura_banreservas]
+        WITH DEFAULT_SCHEMA = [dbo];
+END;
+GO
+
+IF IS_ROLEMEMBER(N'db_datareader', N'usr_lectura_banreservas') = 0
+BEGIN
+    ALTER ROLE [db_datareader] ADD MEMBER [usr_lectura_banreservas];
+END;
+GO
+
+/* ------------------------------------------------------------
+   4. GESTOR EXCLUSIVO DE SERVICIOS FINANCIEROS
+      Login/usuario : usr_gestor_servicios
+      Permisos      : SELECT, INSERT, UPDATE y DELETE únicamente
+                      sobre dbo.ServiciosFinancieros
+   ------------------------------------------------------------ */
+USE [master];
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.server_principals
+    WHERE name = N'usr_gestor_servicios'
+)
+BEGIN
+    CREATE LOGIN [usr_gestor_servicios]
+        WITH PASSWORD = N'P3rm1s0s#2026',
+             CHECK_POLICY = ON,
+             CHECK_EXPIRATION = OFF;
+END;
+GO
+
+USE [BanreservasDB];
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.database_principals
+    WHERE name = N'usr_gestor_servicios'
+)
+BEGIN
+    CREATE USER [usr_gestor_servicios]
+        FOR LOGIN [usr_gestor_servicios]
+        WITH DEFAULT_SCHEMA = [dbo];
+END;
+GO
+
+GRANT SELECT, INSERT, UPDATE, DELETE
+    ON [dbo].[ServiciosFinancieros]
+    TO [usr_gestor_servicios];
+GO
