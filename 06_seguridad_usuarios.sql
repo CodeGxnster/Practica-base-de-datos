@@ -1,15 +1,6 @@
 /* ============================================================
    PROYECTO      : BanreservasDB
    INTEGRANTE    : 6
-   ARCHIVO       : 06_seguridad_usuarios.sql
-   MOTOR         : Microsoft SQL Server
-   DESCRIPCIÓN   : Creación de logins, usuarios y asignación de
-                   roles/permisos DCL sobre BanreservasDB.
-   ============================================================
-   REQUISITOS PREVIOS:
-     - La base de datos BanreservasDB debe existir.
-     - Deben existir las tablas dbo.ServiciosFinancieros y
-       dbo.ExpedientesKYC (01_esquema_tablas.sql).
    ============================================================ */
 
 USE [master];
