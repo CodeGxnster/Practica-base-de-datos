@@ -179,3 +179,55 @@ GRANT SELECT, INSERT, UPDATE, DELETE
     ON [dbo].[ServiciosFinancieros]
     TO [usr_gestor_servicios];
 GO
+
+/* ------------------------------------------------------------
+   5. CAJERO CON RESTRICCIONES
+      Login/usuario : usr_cajero_restringido
+      Permisos      : lectura general (db_datareader)
+      Restricciones : DENY UPDATE sobre dbo.ExpedientesKYC y
+                      DENY SELECT sobre la columna
+                      IngresoMensualEstimado
+   ------------------------------------------------------------ */
+USE [master];
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.server_principals
+    WHERE name = N'usr_cajero_restringido'
+)
+BEGIN
+    CREATE LOGIN [usr_cajero_restringido]
+        WITH PASSWORD = N'Acc3s0L1m1t4d0#2026',
+             CHECK_POLICY = ON,
+             CHECK_EXPIRATION = OFF;
+END;
+GO
+
+USE [BanreservasDB];
+GO
+
+IF NOT EXISTS (
+    SELECT 1
+    FROM sys.database_principals
+    WHERE name = N'usr_cajero_restringido'
+)
+BEGIN
+    CREATE USER [usr_cajero_restringido]
+        FOR LOGIN [usr_cajero_restringido]
+        WITH DEFAULT_SCHEMA = [dbo];
+END;
+GO
+
+IF IS_ROLEMEMBER(N'db_datareader', N'usr_cajero_restringido') = 0
+BEGIN
+    ALTER ROLE [db_datareader] ADD MEMBER [usr_cajero_restringido];
+END;
+GO
+
+DENY UPDATE ON [dbo].[ExpedientesKYC] TO [usr_cajero_restringido];
+GO
+
+DENY SELECT ON [dbo].[ExpedientesKYC] ([IngresoMensualEstimado])
+    TO [usr_cajero_restringido];
+GO
