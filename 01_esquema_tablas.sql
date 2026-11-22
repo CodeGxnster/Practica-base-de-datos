@@ -91,6 +91,226 @@ FechaEvento DATETIME NOT NULL DEFAULT GETDATE(),
 UsuarioEjecutor VARCHAR(100)
 )
 
+--INSERTS
+
+-- =============================================
+-- 1. Cuentahabientes (22 registros)
+-- =============================================
+INSERT INTO Cuentahabientes (CuentahabienteId, Cedula, Nombres, Apellidos, Telefono, EstatusActivo)
+VALUES
+(1,  '00101234567', 'Carlos Alberto',  'Mendoza Rosario',    '8095550101', 1),
+(2,  '00109876543', 'María Elena',     'Pérez Guzmán',       '8095550102', 1),
+(3,  '02300451289', 'José Luis',       'Martínez Santana',   '8295550103', 1),
+(4,  '40223456789', 'Ana Patricia',    'Rodríguez Mejía',    '8495550104', 1),
+(5,  '00111223344', 'Pedro Antonio',   'Gómez Núñez',        '8095550105', 1),
+(6,  '02600789123', 'Laura Sofía',     'Castillo Tavares',   '8295550106', 1),
+(7,  '40219871234', 'Miguel Ángel',    'Díaz Encarnación',   '8495550107', 0),
+(8,  '00105566778', 'Carmen Rosa',     'Vásquez Lora',       '8095550108', 1),
+(9,  '03100345678', 'Ramón Emilio',    'Almonte Reyes',      '8295550109', 1),
+(10, '40227654321', 'Paola Andrea',    'Sánchez Polanco',    '8495550110', 1),
+(11, '00114567890', 'Luis Eduardo',    'Morales Féliz',      '8095550111', 1),
+(12, '02700112233', 'Elena Cristina',  'Bautista Peña',      '8295550112', 1),
+(13, '40211229876', 'Jorge David',     'Reyes Mercedes',     '8495550113', 1),
+(14, '00107788990', 'Valeria Nicole',  'Peguero De León',    '8095550114', 1),
+(15, '02300998877', 'Fernando José',   'Cruz Cabrera',       '8295550115', 0),
+(16, '40230112233', 'Sofía Isabel',    'Jiménez Herrera',    '8495550116', 1),
+(17, '00116789012', 'Andrés Felipe',   'Taveras Marte',      '8095550117', 1),
+(18, '02800445566', 'Gabriela María',  'Espinal Soto',       '8295550118', 1),
+(19, '40218877665', 'Ricardo Antonio', 'Cordero Matos',      '8495550119', 1),
+(20, '00103344556', 'Daniela Esther',  'Arias Contreras',    '8095550120', 1),
+(21, '00119001122', 'Héctor Manuel',   'Peralta Tejeda',     '8095550121', 1),
+(22, '40225544332', 'Natalia Beatriz', 'Valdez Paulino',     '8495550122', 1);
+GO
+
+SELECT * FROM Cuentahabientes
+GO
+
+-- =============================================
+-- 2. ExpedientesKYC (21 registros)
+-- =============================================
+INSERT INTO ExpedientesKYC (ExpedienteId, CuentahabienteId, NivelRiesgo, IngresoMensualEstimado, FechaVerificacion)
+VALUES
+(1,  1,  'Bajo',  85000.00,  '2026-01-15T10:30:00'),
+(2,  2,  'Bajo',  120000.00, '2026-01-20T14:15:00'),
+(3,  3,  'Medio', 65000.00,  '2026-02-03T09:00:00'),
+(4,  4,  'Bajo',  95000.00,  '2026-02-10T11:45:00'),
+(5,  5,  'Alto',  350000.00, '2026-02-18T16:20:00'),
+(6,  6,  'Bajo',  72000.00,  '2026-03-01T08:50:00'),
+(7,  7,  'Medio', 48000.00,  '2026-03-05T13:10:00'),
+(8,  8,  'Bajo',  110000.00, '2026-03-12T15:00:00'),
+(9,  9,  'Medio', 88000.00,  '2026-03-19T10:15:00'),
+(10, 10, 'Bajo',  145000.00, '2026-04-02T09:40:00'),
+(11, 11, 'Bajo',  92000.00,  '2026-04-09T14:30:00'),
+(12, 12, 'Medio', 55000.00,  '2026-04-16T11:05:00'),
+(13, 13, 'Alto',  420000.00, '2026-04-22T16:45:00'),
+(14, 14, 'Bajo',  78000.00,  '2026-05-04T08:30:00'),
+(15, 15, 'Medio', 52000.00,  '2026-05-11T12:20:00'),
+(16, 16, 'Bajo',  130000.00, '2026-05-18T10:50:00'),
+(17, 17, 'Bajo',  105000.00, '2026-05-25T15:35:00'),
+(18, 18, 'Medio', 68000.00,  '2026-06-03T09:15:00'),
+(19, 19, 'Bajo',  160000.00, '2026-06-10T14:00:00'),
+(20, 20, 'Bajo',  89000.00,  '2026-06-17T11:25:00'),
+(21, 21, 'Medio', 74000.00,  '2026-06-24T13:50:00');
+GO
+
+SELECT * FROM ExpedientesKYC
+GO
+
+-- =============================================
+-- 3. SucursalesBancarias (20 registros)
+-- =============================================
+INSERT INTO SucursalesBancarias (SucursalId, CodigoOficina, NombreOficina, Provincia)
+VALUES
+(1,  'SUC-001', 'Oficina Principal Churchill',        'Distrito Nacional'),
+(2,  'SUC-002', 'Sucursal San Pedro Centro',          'San Pedro de Macorís'),
+(3,  'SUC-003', 'Sucursal Santiago Independencia',    'Santiago'),
+(4,  'SUC-004', 'Sucursal La Romana Duarte',          'La Romana'),
+(5,  'SUC-005', 'Sucursal Higüey Altagracia',         'La Altagracia'),
+(6,  'SUC-006', 'Sucursal San Cristóbal Constitución', 'San Cristóbal'),
+(7,  'SUC-007', 'Sucursal Puerto Plata Malecón',      'Puerto Plata'),
+(8,  'SUC-008', 'Sucursal La Vega Las Carreras',      'La Vega'),
+(9,  'SUC-009', 'Sucursal Bonao Duarte',              'Monseñor Nouel'),
+(10, 'SUC-010', 'Sucursal San Francisco Libertad',    'Duarte'),
+(11, 'SUC-011', 'Sucursal Moca Sánchez',              'Espaillat'),
+(12, 'SUC-012', 'Sucursal Baní Máximo Gómez',         'Peravia'),
+(13, 'SUC-013', 'Sucursal Azua Emilio Prud''Homme',   'Azua'),
+(14, 'SUC-014', 'Sucursal Barahona María Montez',     'Barahona'),
+(15, 'SUC-015', 'Sucursal Mao Duarte',                'Valverde'),
+(16, 'SUC-016', 'Sucursal Cotuí 27 de Febrero',       'Sánchez Ramírez'),
+(17, 'SUC-017', 'Sucursal Nagua María Trinidad',      'María Trinidad Sánchez'),
+(18, 'SUC-018', 'Sucursal Samaná Malecón',            'Samaná'),
+(19, 'SUC-019', 'Sucursal Hato Mayor Mercedes',       'Hato Mayor'),
+(20, 'SUC-020', 'Sucursal Monte Plata Duarte',        'Monte Plata');
+GO
+
+SELECT * FROM SucursalesBancarias
+GO
+
+-- =============================================
+-- 4. CuentasBancarias (22 registros)
+-- =============================================
+INSERT INTO CuentasBancarias (CuentaId, NumeroCuenta, CuentahabienteId, SucursalId, TipoCuenta, SaldoDisponible, EstatusActivo)
+VALUES
+(1,  '9601234501', 1,  1,  'Ahorros',   45200.50,  1),
+(2,  '9601234502', 2,  1,  'Corriente', 185000.00, 1),
+(3,  '9601234503', 3,  2,  'Ahorros',   31450.75,  1),
+(4,  '9601234504', 4,  1,  'Ahorros',   64800.00,  1),
+(5,  '9601234505', 5,  3,  'Corriente', 512300.25, 1),
+(6,  '9601234506', 6,  4,  'Ahorros',   27900.00,  1),
+(7,  '9601234507', 7,  2,  'Ahorros',   1250.00,   0),
+(8,  '9601234508', 8,  5,  'Ahorros',   93600.80,  1),
+(9,  '9601234509', 9,  3,  'Corriente', 74120.00,  1),
+(10, '9601234510', 10, 1,  'Ahorros',   158900.40, 1),
+(11, '9601234511', 11, 6,  'Ahorros',   53200.00,  1),
+(12, '9601234512', 12, 7,  'Ahorros',   19850.60,  1),
+(13, '9601234513', 13, 8,  'Corriente', 689400.00, 1),
+(14, '9601234514', 14, 1,  'Ahorros',   41300.15,  1),
+(15, '9601234515', 15, 2,  'Ahorros',   5400.00,   0),
+(16, '9601234516', 16, 9,  'Ahorros',   112750.90, 1),
+(17, '9601234517', 17, 10, 'Corriente', 87600.00,  1),
+(18, '9601234518', 18, 11, 'Ahorros',   29450.30,  1),
+(19, '9601234519', 19, 12, 'Corriente', 234500.00, 1),
+(20, '9601234520', 20, 19, 'Ahorros',   62100.75,  1),
+(21, '9601234521', 21, 2,  'Ahorros',   38700.00,  1),
+(22, '9601234522', 22, 4,  'Ahorros',   79500.20,  1);
+GO
+
+SELECT * FROM CuentasBancarias
+GO
+
+-- =============================================
+-- 5. ServiciosFinancieros (20 registros)
+-- =============================================
+INSERT INTO ServiciosFinancieros (ServicioId, CodigoServicio, DescripcionServicio, TarifaMensual)
+VALUES
+(1,  'SRV-BANCA-DIG',  'Banca Digital y App Móvil',           0.00),
+(2,  'SRV-ALERTA-SMS', 'Alertas SMS Transaccionales',         150.00),
+(3,  'SRV-TOKEN-SEG',  'Token Digital de Seguridad',          0.00),
+(4,  'SRV-CHEQUERA',   'Emisión de Chequera Personal',        650.00),
+(5,  'SRV-TRANS-LBTR', 'Transferencias Interbancarias LBTR',  100.00),
+(6,  'SRV-PAGO-SERV',  'Pago de Servicios Públicos en Línea', 0.00),
+(7,  'SRV-ESTADO-DIG', 'Estado de Cuenta Electrónico',        0.00),
+(8,  'SRV-SEGURO-FRAU','Protección Antifraude de Cuenta',    250.00),
+(9,  'SRV-RETIRO-SIN', 'Retiro Sin Tarjeta en ATM',           0.00),
+(10, 'SRV-NOMINA-PLUS','Gestión de Nómina Empresarial',     1200.00),
+(11, 'SRV-DIVISAS-FX', 'Mesa de Cambio y Divisas Online',     0.00),
+(12, 'SRV-CORRESPONSAL','Pagos en Subagentes Bancarios',      0.00),
+(13, 'SRV-CERT-SALDO', 'Certificación de Saldo y Cuenta',     300.00),
+(14, 'SRV-DOMICILIA',  'Débito Automático Recurrente',        0.00),
+(15, 'SRV-TARJ-DEBITO','Tarjeta de Débito Banreservas',      350.00),
+(16, 'SRV-AVISO-VIAJE','Notificación de Viaje Internacional', 0.00),
+(17, 'SRV-CASH-MGMT',  'Cash Management Corporativo',         2500.00),
+(18, 'SRV-REMESAS-RX', 'Cobro de Remesas en Sucursal y App',  0.00),
+(19, 'SRV-CONSULTA-HIS','Histórico Extendido de Movimientos',  200.00),
+(20, 'SRV-QR-COBRO',   'Cobros mediante Código QR',           0.00);
+GO
+
+SELECT * FROM ServiciosFinancieros
+GO
+
+-- =============================================
+-- 6. CuentasServicios (22 registros)
+-- =============================================
+INSERT INTO CuentasServicios (CuentaId, ServicioId, FechaAfiliacion)
+VALUES
+(1,  1,  '2026-01-16T09:00:00'),
+(1,  2,  '2026-01-16T09:05:00'),
+(1,  15, '2026-01-16T09:10:00'),
+(2,  1,  '2026-01-21T10:00:00'),
+(2,  4,  '2026-01-21T10:15:00'),
+(3,  1,  '2026-02-04T11:20:00'),
+(3,  9,  '2026-02-04T11:25:00'),
+(4,  1,  '2026-02-11T08:40:00'),
+(4,  2,  '2026-02-11T08:45:00'),
+(5,  1,  '2026-02-19T14:00:00'),
+(5,  5,  '2026-02-19T14:10:00'),
+(5,  10, '2026-02-19T14:20:00'),
+(6,  1,  '2026-03-02T09:30:00'),
+(8,  1,  '2026-03-13T10:15:00'),
+(8,  8,  '2026-03-13T10:20:00'),
+(9,  1,  '2026-03-20T12:00:00'),
+(10, 1,  '2026-04-03T09:45:00'),
+(10, 15, '2026-04-03T09:50:00'),
+(11, 1,  '2026-04-10T15:10:00'),
+(13, 1,  '2026-04-23T16:00:00'),
+(13, 17, '2026-04-23T16:15:00'),
+(16, 20, '2026-05-19T11:00:00');
+GO
+
+SELECT * FROM CuentasServicios
+Go
+
+-- =============================================
+-- 7. BitacoraAuditoria (20 registros)
+-- =============================================
+INSERT INTO BitacoraAuditoria (TablaAfectada, RegistroId, CampoModificado, ValorAnterior, ValorActual, FechaEvento, UsuarioEjecutor)
+VALUES
+('Cuentahabientes',      1,  'EstatusActivo',         '0',       '1',         '2026-01-15T10:25:00', 'admin.sistema'),
+('ExpedientesKYC',       1,  'NivelRiesgo',           NULL,      'Bajo',      '2026-01-15T10:30:00', 'kyc.analista1'),
+('CuentasBancarias',     1,  'SaldoDisponible',       '0.00',    '45200.50',  '2026-01-16T08:55:00', 'cajero.suc001'),
+('CuentasServicios',     1,  'ServicioId',            NULL,      '1',         '2026-01-16T09:00:00', 'digital.bot'),
+('Cuentahabientes',      2,  'Telefono',              '8095559999','8095550102','2026-01-20T14:10:00', 'oficial.cumplimiento'),
+('ExpedientesKYC',       2,  'IngresoMensualEstimado','90000.00','120000.00','2026-01-20T14:15:00', 'kyc.analista1'),
+('CuentasBancarias',     2,  'SaldoDisponible',       '0.00',    '185000.00', '2026-01-21T09:50:00', 'cajero.suc001'),
+('Cuentahabientes',      3,  'EstatusActivo',         '0',       '1',         '2026-02-03T08:55:00', 'oficial.suc002'),
+('ExpedientesKYC',       3,  'NivelRiesgo',           'Bajo',    'Medio',     '2026-02-03T09:00:00', 'kyc.analista2'),
+('CuentasBancarias',     3,  'SaldoDisponible',       '0.00',    '31450.75',  '2026-02-04T11:15:00', 'cajero.suc002'),
+('Cuentahabientes',      7,  'EstatusActivo',         '1',       '0',         '2026-03-05T13:05:00', 'riesgo.operativo'),
+('ExpedientesKYC',       7,  'NivelRiesgo',           'Bajo',    'Medio',     '2026-03-05T13:10:00', 'kyc.analista2'),
+('CuentasBancarias',     7,  'EstatusActivo',         '1',       '0',         '2026-03-05T13:12:00', 'riesgo.operativo'),
+('CuentasBancarias',     5,  'SaldoDisponible',       '250000.00','512300.25','2026-02-19T13:50:00', 'cajero.suc003'),
+('ServiciosFinancieros', 10, 'TarifaMensual',         '1000.00', '1200.00',   '2026-04-01T08:00:00', 'prod.finanzas'),
+('CuentasBancarias',     13, 'SaldoDisponible',       '400000.00','689400.00','2026-04-23T15:50:00', 'cajero.suc008'),
+('Cuentahabientes',      15, 'EstatusActivo',         '1',       '0',         '2026-05-11T12:15:00', 'riesgo.operativo'),
+('CuentasBancarias',     15, 'EstatusActivo',         '1',       '0',         '2026-05-11T12:18:00', 'riesgo.operativo'),
+('SucursalesBancarias',  19, 'NombreOficina',         'Sucursal Hato Mayor','Sucursal Hato Mayor Mercedes','2026-06-01T10:00:00','admin.red'),
+('CuentasBancarias',     20, 'SaldoDisponible',       '0.00',    '62100.75',  '2026-06-17T11:20:00', 'cajero.suc019');
+GO
+
+SELECT * FROM BitacoraAuditoria
+GO
+
+
 
 
 
