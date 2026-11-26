@@ -48,3 +48,28 @@ Return
         On CS.ServicioId = SF.ServicioId
 );
 GO
+
+
+Create function dbo.fn_CuentasPorProvincia
+(
+    @Provincia Varchar(50)
+)
+Returns table
+As
+Return
+(
+    Select
+        CB.CuentaId,
+        CB.NumeroCuenta,
+        CB.CuentahabienteId,
+        CB.SucursalId,
+        CB.TipoCuenta,
+        CB.SaldoDisponible,
+        CB.EstatusActivo,
+        SB.NombreOficina,
+        SB.Provincia
+    From dbo.CuentasBancarias As CB
+    INNER JOIN dbo.SucursalesBancarias As SB
+        On CB.SucursalId = SB.SucursalId
+    where SB.Provincia = @Provincia
+);
