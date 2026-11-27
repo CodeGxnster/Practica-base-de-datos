@@ -6,7 +6,10 @@ CREATE TRIGGER trg_BorradoLogicoCuenta ON CuentasBancarias
 INSTEAD OF Delete
 AS
 BEGIN
-	UPDATE CuentasBancarias set EstatusActivo = 0; 
+	UPDATE CuentasBancarias
+	SET EstatusActivo = 0
+	FROM CuentasBancarias cb
+	INNER JOIN deleted d ON cb.CuentaId = d.CuentaId;
 END
 GO
 
@@ -24,7 +27,7 @@ BEGIN
 			   d.SaldoDisponible  ValorAnterior,
 			   i.SaldoDisponible  ValorActual,
 			   GETDATE()	      FechaEvento,
-			   SYSTEM_USER		  UsuarioEjector
+			   SYSTEM_USER		  UsuarioEjecutor
 		FROM CuentasBancarias cb
 		INNER JOIN inserted i ON cb.CuentaId = i.CuentaId
 		INNER JOIN deleted d ON cb.CuentaId = d.CuentaId
